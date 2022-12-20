@@ -124,7 +124,7 @@ const CriarConta: React.FC = () => {
             <Button variant="contained">Create account!</Button>
           </Box>
           <Box sx={{ textAlign: "center" }}>
-            <Link href="/login" variant="body2">
+            <Link href="/" variant="body2">
               {"Já possuo conta? Retorna pag Login!"}
             </Link>
           </Box>
