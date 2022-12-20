@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
-import ContactsCounter from "./ContactsCounter";
+// import ContactsCounter from "./ContactsCounter";
 import CropFreeIcon from "@mui/icons-material/CropFree";
 import CycloneIcon from "@mui/icons-material/Cyclone";
 import CommentBankIcon from "@mui/icons-material/CommentBank";

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Grid, Button, Paper } from "@mui/material";
 import ResponsiveAppBar from "../components/ResponsiveAppBar";
-
+import FormDialog from "../components/FormDialog";
 const ListaRecados: React.FC = () => {
   return (
     <Grid container>

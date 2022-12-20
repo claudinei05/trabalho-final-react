@@ -1,19 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-interface RouteLinkProps {
-  title: string;
-  route: string;
-}
+// interface RouteLinkProps {
+//   title: string;
+//   route: string;
+// }
 
-const RouteLink: React.FC<RouteLinkProps> = ({ title, route }) => {
-  return (
-    <>
-      <div style={{ padding: "200px" }}>
-        <Link to={route}>{title}</Link>
-      </div>
-    </>
-  );
-};
+// const RouteLink: React.FC<RouteLinkProps> = ({ title, route }) => {
+//   return (
+//     <>
+//       <div style={{ padding: "200px" }}>
+//         <Link to={route}>{title}</Link>
+//       </div>
+//     </>
+//   );
+// };
 
-export default RouteLink;
+// export default RouteLink;

@@ -9,7 +9,7 @@ import { login } from "../store/modules/LoginSlice";
 
 const ImgBackground = require("../public/assets/imgBack.png") as string;
 const ImgUser = require("../public/assets/man.png") as string;
-const MyReduxPag: React.FC = () => {
+const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const loginRecados = useAppSelector((state) => state.login);
@@ -17,12 +17,17 @@ const MyReduxPag: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loginRecados.logged) navigate("/listarecados");
+    if (loginRecados.logged) {
+      navigate("/listarecados");
+    }
   }, [loginRecados, navigate]);
 
   const handleLogin = () => {
     if (email.length && password.length) {
       dispatch(login({ email, password, logged: true }));
+    }
+    if (email === "" || password === "") {
+      alert("Preencha os campo E-mail e Senha");
     }
   };
   return (
@@ -104,4 +109,4 @@ const MyReduxPag: React.FC = () => {
     </Grid>
   );
 };
-export default MyReduxPag;
+export default Login;

@@ -1,10 +1,42 @@
-import * as React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Link, Grid, Button, Paper } from "@mui/material";
 const ImgBackground = require("../public/assets/imgBack.png") as string;
 const ImgUser = require("../public/assets/man.png") as string;
 const CriarConta: React.FC = () => {
+  const listUser = [];
+  const [email, setEmail] = useState<string | undefined>("");
+  const [password, setPassword] = useState<string | undefined>("");
+  const [confirm, setConfirm] = useState<string | undefined>("");
+
+  useEffect(() => {});
+
+  const createAccount = () => {
+    if (!email || !password || !confirm) {
+      alert(`Preencha os campos!`);
+    }
+    if (Number(password?.length) < 5) {
+      alert("A senha precisa ter pelo menos 5 caractéres");
+    }
+    if (password !== confirm) alert("Senhas não conferem!");
+
+    localStorage.setItem("users", JSON.stringify(email));
+  };
+
+  const handleChangeEmail = (ev: any) => {
+    const value = ev.target.value;
+    setEmail(value);
+  };
+  const handleChangePassword = (ev: any) => {
+    const value = ev.target.value;
+    setPassword(value);
+  };
+  const handleChangeConfirm = (ev: any) => {
+    const value = ev.target.value;
+    setConfirm(value);
+  };
+
   return (
     <Grid
       container
@@ -53,6 +85,7 @@ const CriarConta: React.FC = () => {
               id="outlined-basic"
               label="Type your e-mail"
               variant="outlined"
+              onChange={handleChangeEmail}
             />
           </Box>
           <Box
@@ -68,6 +101,7 @@ const CriarConta: React.FC = () => {
               label="Password"
               type="password"
               autoComplete="current-password"
+              onChange={handleChangePassword}
             />
           </Box>
           <Box
@@ -77,6 +111,7 @@ const CriarConta: React.FC = () => {
             }}
             noValidate
             autoComplete="off"
+            onChange={handleChangeConfirm}
           >
             <TextField
               id="outlined-password-input"
@@ -85,7 +120,7 @@ const CriarConta: React.FC = () => {
               autoComplete="current-password"
             />
           </Box>
-          <Box sx={{ textAlign: "center", color: "#d6e6f5" }}>
+          <Box sx={{ textAlign: "center" }} onClick={createAccount}>
             <Button variant="contained">Create account!</Button>
           </Box>
           <Box sx={{ textAlign: "center" }}>
