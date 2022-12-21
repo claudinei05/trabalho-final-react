@@ -27,7 +27,7 @@ const Login: React.FC = () => {
       dispatch(login({ email, password, logged: true }));
     }
     if (email === "" || password === "") {
-      alert("Preencha os campo E-mail e Senha");
+      alert("Preencha os campo E-mail e Senha!");
     }
   };
   return (
@@ -100,7 +100,7 @@ const Login: React.FC = () => {
 
             <Box sx={{ textAlign: "center" }}>
               <Link href="/criarconta" variant="body2">
-                {"Não tem uma conta ainda? Crie uma conta"}
+                {"Não tem uma conta ainda? Crie uma conta!"}
               </Link>
             </Box>
           </Paper>
