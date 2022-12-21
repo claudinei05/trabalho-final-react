@@ -60,7 +60,12 @@ const CriarConta: React.FC = () => {
             padding: "0 50px 50px",
           }}
         >
-          <Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <img src={ImgUser} alt="" />
           </Grid>
           <Box

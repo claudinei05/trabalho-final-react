@@ -57,9 +57,23 @@ const Login: React.FC = () => {
               padding: "50px",
             }}
           >
-            <Grid>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <img src={ImgUser} alt="" />
-            </Grid>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "0px",
+              }}
+            >
+              <h2>Lista de Recados</h2>
+            </Box>
 
             <Box
               component="form"

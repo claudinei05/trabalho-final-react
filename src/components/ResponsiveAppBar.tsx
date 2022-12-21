@@ -23,15 +23,6 @@ type PageType = {
   route: string;
 };
 
-// const pages: PageType[] = [
-//   { label: "Home", route: "/" },
-//   { label: "Sobre", route: "/about" },
-//   { label: "Contato", route: "/contact" },
-//   { label: "Pessoas", route: "/people" },
-//   { label: "Produtos", route: "/products" },
-// ];
-
-//const pagesAnt = ["Home", "Sobre", "Contato"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -66,7 +57,6 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           <CycloneIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
 
-          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
