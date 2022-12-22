@@ -1,14 +1,43 @@
+// import { configureStore } from "@reduxjs/toolkit";
+// import rootReducer from "./modules/rootReducer";
+
+// const store = configureStore({
+//   reducer: rootReducer,
+//   devTools: true,
+// });
+
+// // Infer the `RootState` and `AppDispatch` types from the store itself
+// export type RootState = ReturnType<typeof store.getState>;
+// // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+// export type AppDispatch = typeof store.dispatch;
+
+// export { store };
+
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./modules/rootReducer";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import thunk from "redux-thunk";
+
+const persistConfig = {
+  key: "root",
+  storage,
+  // whitelist: ["login", "criarconta", "recados"],
+};
+
+const persistedReducers = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducers,
   devTools: true,
+  middleware: [thunk],
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+const persistor = persistStore(store);
+
+// Infer the RootState and AppDispatch types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 
-export { store };
+export { store, persistor };

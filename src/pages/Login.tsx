@@ -2,33 +2,41 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Link, Grid, Button, Paper } from "@mui/material";
-
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useNavigate } from "react-router-dom";
-import { login } from "../store/modules/LoginSlice";
+import { selectUser, updateOne } from "../store/modules/UserSlice";
 
 const ImgBackground = require("../public/assets/imgBack.png") as string;
 const ImgUser = require("../public/assets/man.png") as string;
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const loginRecados = useAppSelector((state) => state.login);
+  const userRedux = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  console.log(userRedux);
   useEffect(() => {
-    if (loginRecados.logged) {
+    const userLogged = userRedux.findIndex((user) => user.logged);
+
+    if (userLogged !== -1) {
       navigate("/listarecados");
     }
-  }, [loginRecados, navigate]);
+  }, [userRedux, navigate]);
 
   const handleLogin = () => {
-    if (email.length && password.length) {
-      dispatch(login({ email, password, logged: true }));
-    }
     if (email === "" || password === "") {
       alert("Preencha os campo E-mail e Senha!");
     }
+    const userExist = userRedux.findIndex((user) => user.email === email);
+    if (userExist === -1) {
+      return alert("E-mail não cadastrado");
+    }
+    const passwordExist = userRedux[userExist].password === password;
+    if (!passwordExist) {
+      return alert("Password não cadastrado");
+    }
+    dispatch(updateOne({ id: email, changes: { logged: true } }));
   };
   return (
     <Grid container>

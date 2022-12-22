@@ -1,40 +1,40 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Link, Grid, Button, Paper } from "@mui/material";
+
+import { useAppDispatch } from "../store/hooks";
+import { useNavigate } from "react-router-dom";
+
+import { adduser } from "../store/modules/UserSlice";
+
 const ImgBackground = require("../public/assets/imgBack.png") as string;
 const ImgUser = require("../public/assets/man.png") as string;
 const CriarConta: React.FC = () => {
-  const listUser = [];
-  const [email, setEmail] = useState<string | undefined>("");
-  const [password, setPassword] = useState<string | undefined>("");
-  const [confirm, setConfirm] = useState<string | undefined>("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confpassword, setConfirmPassword] = useState<string>("");
 
-  useEffect(() => {});
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const createAccount = () => {
-    if (!email || !password || !confirm) {
-      alert(`Preencha os campos!`);
+  const handleCreateAcccount = () => {
+    if (email === "" || name === "" || password === "") {
+      alert("Fill in the fields!");
     }
-    if (Number(password?.length) < 5) {
-      alert("A senha precisa ter pelo menos 5 caractéres");
+    if (password.length < 5 || confpassword.length < 5) {
+      alert("Password needs at least 5 characters");
+      return;
     }
-    if (password !== confirm) alert("Senhas não conferem!");
-
-    localStorage.setItem("users", JSON.stringify(email));
-  };
-
-  const handleChangeEmail = (ev: any) => {
-    const value = ev.target.value;
-    setEmail(value);
-  };
-  const handleChangePassword = (ev: any) => {
-    const value = ev.target.value;
-    setPassword(value);
-  };
-  const handleChangeConfirm = (ev: any) => {
-    const value = ev.target.value;
-    setConfirm(value);
+    if (password !== confpassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+    if (email.length && password.length && name.length && confpassword.length) {
+      dispatch(adduser({ name, email, password, logged: false }));
+      navigate("/");
+    }
   };
 
   return (
@@ -76,7 +76,13 @@ const CriarConta: React.FC = () => {
             noValidate
             autoComplete="off"
           >
-            <TextField id="outlined-basic" label="Name" variant="outlined" />
+            <TextField
+              id="outlined-basic"
+              label="Name"
+              onChange={(ev) => setName(ev.target.value)}
+              value={name}
+              variant="outlined"
+            />
           </Box>
           <Box
             component="form"
@@ -90,7 +96,8 @@ const CriarConta: React.FC = () => {
               id="outlined-basic"
               label="Type your e-mail"
               variant="outlined"
-              onChange={handleChangeEmail}
+              value={email}
+              onChange={(ev) => setEmail(ev.target.value)}
             />
           </Box>
           <Box
@@ -106,7 +113,8 @@ const CriarConta: React.FC = () => {
               label="Password"
               type="password"
               autoComplete="current-password"
-              onChange={handleChangePassword}
+              onChange={(ev) => setPassword(ev.target.value)}
+              value={password}
             />
           </Box>
           <Box
@@ -116,16 +124,17 @@ const CriarConta: React.FC = () => {
             }}
             noValidate
             autoComplete="off"
-            onChange={handleChangeConfirm}
           >
             <TextField
               id="outlined-password-input"
               label="Confirm password"
               type="password"
               autoComplete="current-password"
+              onChange={(ev) => setConfirmPassword(ev.target.value)}
+              value={confpassword}
             />
           </Box>
-          <Box sx={{ textAlign: "center" }} onClick={createAccount}>
+          <Box sx={{ textAlign: "center" }} onClick={handleCreateAcccount}>
             <Button variant="contained">Create account!</Button>
           </Box>
           <Box sx={{ textAlign: "center" }}>

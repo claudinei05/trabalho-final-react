@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CreateAccount {
+  name: string;
   email: string;
   password: string;
   confpassword: string;
@@ -8,6 +9,7 @@ interface CreateAccount {
 }
 
 const initialState: CreateAccount = {
+  name: "",
   email: "",
   password: "",
   confpassword: "",
@@ -15,17 +17,14 @@ const initialState: CreateAccount = {
 };
 
 const CriarContaSlice = createSlice({
-  name: "login",
+  name: "createAccount",
   initialState,
   reducers: {
-    login(state, action: PayloadAction<CreateAccount>) {
+    criarConta(state, action: PayloadAction<CreateAccount>) {
       return action.payload;
-    },
-    logoff() {
-      return initialState;
     },
   },
 });
 
-export const { login, logoff } = CriarContaSlice.actions;
+export const { criarConta } = CriarContaSlice.actions;
 export default CriarContaSlice.reducer;
