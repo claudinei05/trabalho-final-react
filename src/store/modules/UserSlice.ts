@@ -1,15 +1,8 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-
 import { RootState } from "..";
+import UserTypes from "../../types/UserTypes";
 
-export interface conta {
-  name: string;
-  email: string;
-  password: string;
-  logged: boolean;
-}
-
-const adapter = createEntityAdapter<conta>({
+const adapter = createEntityAdapter<UserTypes>({
   selectId: (item) => item.email,
 });
 

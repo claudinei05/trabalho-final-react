@@ -30,12 +30,13 @@ const Login: React.FC = () => {
     }
     const userExist = userRedux.findIndex((user) => user.email === email);
     if (userExist === -1) {
-      return alert("E-mail não cadastrado");
+      return alert("Email not registered");
     }
     const passwordExist = userRedux[userExist].password === password;
     if (!passwordExist) {
-      return alert("Password não cadastrado");
+      return alert("Password not registered");
     }
+
     dispatch(updateOne({ id: email, changes: { logged: true } }));
   };
   return (

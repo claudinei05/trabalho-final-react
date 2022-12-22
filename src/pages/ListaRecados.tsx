@@ -1,10 +1,13 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Grid, Button, Paper } from "@mui/material";
 import ResponsiveAppBar from "../components/ResponsiveAppBar";
 import FormDialog from "../components/FormDialog";
 const ListaRecados: React.FC = () => {
+  const [description, setDescription] = useState<string>("");
+  const [detailing, setDetailing] = useState<string>("");
+
   return (
     <Grid container>
       <ResponsiveAppBar />
