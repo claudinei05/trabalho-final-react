@@ -1,13 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Grid, Button, Paper } from "@mui/material";
+import {
+  Card,
+  Grid,
+  Button,
+  Paper,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import ResponsiveAppBar from "../components/ResponsiveAppBar";
-import FormDialog from "../components/FormDialog";
-const ListaRecados: React.FC = () => {
-  const [description, setDescription] = useState<string>("");
-  const [detailing, setDetailing] = useState<string>("");
 
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import {
+  deleteRecados,
+  selectRecados,
+} from "../store/modules/ListaRecadosSlice";
+import FormMessage from "../components/FormMessage";
+const ListaRecados: React.FC = () => {
+  const allrecafosRedux = useAppSelector(selectRecados);
+  const dispatch = useAppDispatch();
+  console.log(allrecafosRedux);
+  const recDelete = useCallback((description: string) => {
+    dispatch(deleteRecados(description));
+  }, []);
   return (
     <Grid container>
       <ResponsiveAppBar />
@@ -33,36 +52,37 @@ const ListaRecados: React.FC = () => {
               margin: "15px",
             }}
           >
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 3, width: "50ch" },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                id="outlined-basic"
-                label="Description"
-                variant="outlined"
-              />
-              <TextField
-                id="outlined-basic"
-                label="Detailing"
-                variant="outlined"
-              />
-              <Button
-                variant="contained"
-                sx={{
-                  padding: "5px",
-                  backgroundColor: "burlywood",
-                  m: "0 170px",
-                  width: "10vh",
-                }}
-              >
-                Save Messages!
-              </Button>
-            </Box>
+            <FormMessage />
+            {allrecafosRedux.map((item) => {
+              return (
+                <Card>
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    ></Typography>
+                    <Typography variant="h5" component="div">
+                      {item.description}
+                    </Typography>
+
+                    <Typography variant="body2">{item.detailing}</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button variant="outlined" startIcon={<EditIcon />}>
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      startIcon={<DeleteIcon />}
+                      onClick={() => recDelete(item.description)}
+                    >
+                      Delete
+                    </Button>
+                  </CardActions>
+                </Card>
+              );
+            })}
           </Paper>
         </Grid>
       </Grid>
