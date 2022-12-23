@@ -20,6 +20,7 @@ import {
   selectRecados,
 } from "../store/modules/ListaRecadosSlice";
 import FormMessage from "../components/FormMessage";
+import { margin } from "@mui/system";
 const ListaRecados: React.FC = () => {
   const allrecafosRedux = useAppSelector(selectRecados);
   const dispatch = useAppDispatch();
@@ -52,37 +53,48 @@ const ListaRecados: React.FC = () => {
               margin: "15px",
             }}
           >
-            <FormMessage />
-            {allrecafosRedux.map((item) => {
-              return (
-                <Card>
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 14 }}
-                      color="text.secondary"
-                      gutterBottom
-                    ></Typography>
-                    <Typography variant="h5" component="div">
-                      {item.description}
-                    </Typography>
-
-                    <Typography variant="body2">{item.detailing}</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button variant="outlined" startIcon={<EditIcon />}>
-                      Edit
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      startIcon={<DeleteIcon />}
-                      onClick={() => recDelete(item.description)}
-                    >
-                      Delete
-                    </Button>
-                  </CardActions>
-                </Card>
-              );
-            })}
+            <Grid container>
+              <FormMessage />
+              {allrecafosRedux.map((item) => {
+                return (
+                  <Grid
+                    item
+                    xs={2}
+                    sx={{
+                      margin: "3px",
+                    }}
+                  >
+                    <Card>
+                      <CardContent>
+                        <Typography
+                          sx={{ fontSize: 14 }}
+                          color="text.secondary"
+                          gutterBottom
+                        ></Typography>
+                        <Typography variant="h4" component="div">
+                          {item.description}
+                        </Typography>
+                        <Typography variant="body2">
+                          {item.detailing}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button variant="outlined" startIcon={<EditIcon />}>
+                          Edite
+                        </Button>
+                        <Button
+                          variant="outlined"
+                          startIcon={<DeleteIcon />}
+                          onClick={() => recDelete(item.description)}
+                        >
+                          Delete
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                );
+              })}
+            </Grid>
           </Paper>
         </Grid>
       </Grid>
