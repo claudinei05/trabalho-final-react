@@ -139,7 +139,7 @@ const CriarConta: React.FC = () => {
           </Box>
           <Box sx={{ textAlign: "center" }}>
             <Link href="/" variant="body2">
-              {"Já possuo conta? Retorna pag Login!"}
+              {"Already have an account? Returns to Login!"}
             </Link>
           </Box>
         </Paper>

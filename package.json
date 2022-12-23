@@ -1,5 +1,5 @@
 {
-  "name": "list-contacts-redux-tollkit",
+  "name": "errand-list",
   "version": "0.1.0",
   "dependencies": {
     "@emotion/react": "^11.10.5",

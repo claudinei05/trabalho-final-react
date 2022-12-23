@@ -62,7 +62,7 @@ const FormMessage: React.FC = () => {
               onClick={() => handleAddMessage({ description, detailing })}
               variant="contained"
             >
-              Cadastrar
+              Save
             </Button>
           </Grid>
         </Grid>

@@ -81,7 +81,7 @@ const Login: React.FC = () => {
                 padding: "0px",
               }}
             >
-              <h2>Lista de Recados</h2>
+              <h2>Errand List</h2>
             </Box>
 
             <Box
@@ -123,7 +123,7 @@ const Login: React.FC = () => {
 
             <Box sx={{ textAlign: "center" }}>
               <Link href="/criarconta" variant="body2">
-                {"Não tem uma conta ainda? Crie uma conta!"}
+                {"Do not have an account yet? Create an account!"}
               </Link>
             </Box>
           </Paper>

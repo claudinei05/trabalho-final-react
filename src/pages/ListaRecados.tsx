@@ -1,6 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import React, { useCallback } from "react";
 import {
   Card,
   Grid,
@@ -13,14 +11,13 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ResponsiveAppBar from "../components/ResponsiveAppBar";
-
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   deleteRecados,
   selectRecados,
 } from "../store/modules/ListaRecadosSlice";
 import FormMessage from "../components/FormMessage";
-import { margin } from "@mui/system";
+
 const ListaRecados: React.FC = () => {
   const allrecafosRedux = useAppSelector(selectRecados);
   const dispatch = useAppDispatch();
@@ -80,7 +77,7 @@ const ListaRecados: React.FC = () => {
                       </CardContent>
                       <CardActions>
                         <Button variant="outlined" startIcon={<EditIcon />}>
-                          Edite
+                          Edit
                         </Button>
                         <Button
                           variant="outlined"
