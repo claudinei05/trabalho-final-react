@@ -15,7 +15,6 @@ const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  console.log(userRedux);
   useEffect(() => {
     const userLogged = userRedux.findIndex((user) => user.logged);
 
@@ -26,7 +25,7 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     if (email === "" || password === "") {
-      alert("Preencha os campo E-mail e Senha!");
+      alert("Fill in the E-mail and Password field!");
     }
     const userExist = userRedux.findIndex((user) => user.email === email);
     if (userExist === -1) {

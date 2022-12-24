@@ -31,12 +31,14 @@ export default function FormDialog({ open, close, id }: OpenMessage) {
 
   const handleClick = () => {
     dispatch(
-      updateRecados({ id: description as string, changes: { detailing } })
+      updateRecados({
+        id: description as string,
+        changes: { detailing },
+      })
     );
     close();
   };
 
-  console.log(formRedux);
   return (
     <div>
       <Dialog open={open} onClose={close}>

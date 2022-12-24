@@ -22,22 +22,23 @@ import FormDialog from "../components/FormDialog";
 import { set } from "immer/dist/internal";
 
 const ListaRecados: React.FC = () => {
-  const allrecafosRedux = useAppSelector(selectRecados);
+  //O allrecadosRedux ta pegando meu estado do meu ListaRecadosSlice.ts
+  const allrecadosRedux = useAppSelector(selectRecados);
   const dispatch = useAppDispatch();
-  console.log(allrecafosRedux);
-
+  //ESTADO NA LINHA 28 E 29 E DO MEU COMPONENTE FormDialog
   const [open, setOpen] = React.useState(false);
   const [id, setID] = React.useState<string>("");
 
+  //ESTA SENDO DESPARADA QUANDO CLICO NO BOTÃO EDITAR
   const handleClickOpen = (id: string) => {
     setOpen(true);
     setID(id);
   };
-
+  //TA SENDO DISPARADO NO BOTÃO Cancel NO COMPONENTE FormDialog
   const handleClose = () => {
     setOpen(false);
   };
-  // const editMessage=useCallback(()=>{dispatch(updateOne)})
+
   const recDelete = useCallback((description: string) => {
     dispatch(deleteRecados(description));
   }, []);
@@ -68,7 +69,7 @@ const ListaRecados: React.FC = () => {
           >
             <Grid container spacing={2}>
               <FormMessage />
-              {allrecafosRedux.map((item) => {
+              {allrecadosRedux.map((item) => {
                 return (
                   <Grid item xs={3} sx={{}} key={item.description}>
                     <Card>
