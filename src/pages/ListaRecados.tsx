@@ -78,9 +78,18 @@ const ListaRecados: React.FC = () => {
                           sx={{ fontSize: 14 }}
                           color="text.secondary"
                           gutterBottom
-                        ></Typography>
+                        >
+                          Description
+                        </Typography>
                         <Typography variant="h4" component="div">
                           {item.description}
+                        </Typography>
+                        <Typography
+                          sx={{ fontSize: 14 }}
+                          color="text.secondary"
+                          gutterBottom
+                        >
+                          Detailing
                         </Typography>
                         <Typography variant="body2">
                           {item.detailing}
