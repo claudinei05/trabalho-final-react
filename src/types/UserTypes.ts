@@ -1,6 +1,6 @@
 interface UserTypes {
   name: string;
-  email: string;
+  usuario: string;
   password: string;
   logged: boolean;
 }

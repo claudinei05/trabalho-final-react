@@ -12,7 +12,7 @@ const ImgBackground = require("../public/assets/imgBack.png") as string;
 const ImgUser = require("../public/assets/man.png") as string;
 const CriarConta: React.FC = () => {
   const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [usuario, setUsuario] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confpassword, setConfirmPassword] = useState<string>("");
 
@@ -20,7 +20,7 @@ const CriarConta: React.FC = () => {
   const navigate = useNavigate();
 
   const handleCreateAcccount = () => {
-    if (email === "" || name === "" || password === "") {
+    if (usuario === "" || name === "" || password === "") {
       alert("Fill in the fields!");
     }
     if (password.length < 5 || confpassword.length < 5) {
@@ -31,8 +31,13 @@ const CriarConta: React.FC = () => {
       alert("Passwords do not match.");
       return;
     }
-    if (email.length && password.length && name.length && confpassword.length) {
-      dispatch(adduser({ name, email, password, logged: false }));
+    if (
+      usuario.length &&
+      password.length &&
+      name.length &&
+      confpassword.length
+    ) {
+      dispatch(adduser({ name, usuario: usuario, password, logged: false }));
       navigate("/");
     }
   };
@@ -94,10 +99,10 @@ const CriarConta: React.FC = () => {
           >
             <TextField
               id="outlined-basic"
-              label="Type your e-mail"
+              label="Create a user"
               variant="outlined"
-              value={email}
-              onChange={(ev) => setEmail(ev.target.value)}
+              value={usuario}
+              onChange={(ev) => setUsuario(ev.target.value)}
             />
           </Box>
           <Box

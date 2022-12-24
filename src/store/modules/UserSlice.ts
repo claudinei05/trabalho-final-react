@@ -3,7 +3,7 @@ import { RootState } from "..";
 import UserTypes from "../../types/UserTypes";
 
 const adapter = createEntityAdapter<UserTypes>({
-  selectId: (item) => item.email,
+  selectId: (item) => item.usuario,
 });
 
 export const { selectAll: selectUser, selectById: selectByIdUser } =

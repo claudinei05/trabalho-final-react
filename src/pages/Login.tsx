@@ -9,7 +9,7 @@ import { selectUser, updateOne } from "../store/modules/UserSlice";
 const ImgBackground = require("../public/assets/imgBack.png") as string;
 const ImgUser = require("../public/assets/man.png") as string;
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
+  const [usuario, setUsuario] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const userRedux = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
@@ -24,19 +24,19 @@ const Login: React.FC = () => {
   }, [userRedux, navigate]);
 
   const handleLogin = () => {
-    if (email === "" || password === "") {
+    if (usuario === "" || password === "") {
       alert("Fill in the E-mail and Password field!");
     }
-    const userExist = userRedux.findIndex((user) => user.email === email);
+    const userExist = userRedux.findIndex((user) => user.usuario === usuario);
     if (userExist === -1) {
-      return alert("Email not registered");
+      return alert("User not registered");
     }
     const passwordExist = userRedux[userExist].password === password;
     if (!passwordExist) {
       return alert("Password not registered");
     }
 
-    dispatch(updateOne({ id: email, changes: { logged: true } }));
+    dispatch(updateOne({ id: usuario, changes: { logged: true } }));
   };
   return (
     <Grid container>
@@ -93,8 +93,8 @@ const Login: React.FC = () => {
             >
               <TextField
                 id="outlined-basic"
-                onChange={(ev) => setEmail(ev.target.value)}
-                label="Type your e-mail"
+                onChange={(ev) => setUsuario(ev.target.value)}
+                label="User"
                 variant="outlined"
               />
             </Box>
