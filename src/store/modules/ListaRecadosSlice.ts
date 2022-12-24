@@ -7,7 +7,7 @@ const adapter = createEntityAdapter<ListaRecTypes>({
   selectId: (item) => item.description,
 });
 
-export const { selectAll: selectRecados, selectById: electRecadosById } =
+export const { selectAll: selectRecados, selectById: selectRecadosById } =
   adapter.getSelectors((state: RootState) => state.recados);
 
 const sliceNameSlice = createSlice({

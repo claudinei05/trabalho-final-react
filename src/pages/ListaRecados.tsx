@@ -17,11 +17,27 @@ import {
   selectRecados,
 } from "../store/modules/ListaRecadosSlice";
 import FormMessage from "../components/FormMessage";
+import { updateOne } from "../store/modules/UserSlice";
+import FormDialog from "../components/FormDialog";
+import { set } from "immer/dist/internal";
 
 const ListaRecados: React.FC = () => {
   const allrecafosRedux = useAppSelector(selectRecados);
   const dispatch = useAppDispatch();
   console.log(allrecafosRedux);
+
+  const [open, setOpen] = React.useState(false);
+  const [id, setID] = React.useState<string>("");
+
+  const handleClickOpen = (id: string) => {
+    setOpen(true);
+    setID(id);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // const editMessage=useCallback(()=>{dispatch(updateOne)})
   const recDelete = useCallback((description: string) => {
     dispatch(deleteRecados(description));
   }, []);
@@ -50,17 +66,11 @@ const ListaRecados: React.FC = () => {
               margin: "15px",
             }}
           >
-            <Grid container>
+            <Grid container spacing={2}>
               <FormMessage />
               {allrecafosRedux.map((item) => {
                 return (
-                  <Grid
-                    item
-                    xs={2}
-                    sx={{
-                      margin: "3px",
-                    }}
-                  >
+                  <Grid item xs={3} sx={{}} key={item.description}>
                     <Card>
                       <CardContent>
                         <Typography
@@ -76,7 +86,11 @@ const ListaRecados: React.FC = () => {
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <Button variant="outlined" startIcon={<EditIcon />}>
+                        <Button
+                          variant="outlined"
+                          startIcon={<EditIcon />}
+                          onClick={() => handleClickOpen(item.description)}
+                        >
                           Edit
                         </Button>
                         <Button
@@ -92,6 +106,7 @@ const ListaRecados: React.FC = () => {
                 );
               })}
             </Grid>
+            <FormDialog open={open} close={handleClose} id={id}></FormDialog>
           </Paper>
         </Grid>
       </Grid>
